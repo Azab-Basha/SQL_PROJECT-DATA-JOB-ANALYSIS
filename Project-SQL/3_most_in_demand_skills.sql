@@ -8,18 +8,18 @@ Why? Retrieves the top 5 skills with the highest demand in the the job market,
 --My solution
 SELECT	
     skills,
-	COUNT(skills) AS number_of_skills
+	COUNT(skills) AS demand_count
 FROM
     job_postings_fact
 INNER JOIN skills_job_dim on job_postings_fact.job_id = skills_job_dim.job_id
 INNER JOIN skills_dim on skills_job_dim.skill_id = skills_dim.skill_id
 WHERE
     job_title_short = 'Data Analyst' AND 
-    job_location = 'Anywhere'
+    job_location = 'Anywhere' 
 GROUP BY
     skills        
 ORDER BY
-    number_of_skills DESC
+    demand_count DESC
 LIMIT 5;
 
 
